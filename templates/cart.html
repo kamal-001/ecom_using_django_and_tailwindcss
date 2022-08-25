@@ -1,0 +1,173 @@
+{% extends 'basic.html' %}
+{% block title %}Cart{% endblock title %}
+{% block css%}
+<style>
+    #summary {
+        background-color: #f6f6f6;
+    }
+</style>
+
+<style>
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  
+    .custom-number-input input:focus {
+      outline: none !important;
+    }
+  
+    .custom-number-input button:focus {
+      outline: none !important;
+    }
+  </style>
+  
+{% endblock css %}
+{% load cart %}
+{% load custom_filter %}
+{% block body %}
+<div class="container mx-auto mt-10">
+    <div class="flex shadow-md my-10">
+        <div class="w-3/4 bg-white px-10 py-10">
+            <div class="flex justify-between border-b pb-8">
+                <h1 class="font-semibold text-2xl">Shopping Cart</h1>
+                <h2 class="font-semibold text-2xl">3 Items</h2>
+            </div>
+            <div class="flex mt-10 mb-5">
+                <h3 class="font-semibold text-gray-600 text-xs uppercase w-1/5">Sr. no.</h3>
+                <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+            </div>
+            {% for product in products %}
+            <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                <!-- product -->
+                <div class="flex justify-start w-1/5">
+                    <p class="mx-2 text-center w-8">{{forloop.counter}}</p>                    
+                </div>
+                <div class="flex w-2/5">     
+                    <div class="w-20">
+                        <img class="h-24" src="{{product.image.url}}" alt="">
+                    </div>
+                    <div class="flex flex-col justify-between ml-4 flex-grow">
+                        <span class="font-bold text-sm">{{product.name}}</span>
+                        <span class="text-red-500 text-xs">{{product.category}}</span>
+                        <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                    </div>
+                </div>
+                <div class="flex justify-center w-1/5">
+                    <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-l cursor-pointer outline-none">
+                        <span class="m-auto text-2xl font-thin">−</span>
+                      </button>
+
+                    <input class="mx-2 border text-center w-8" type="number" name="custom-input-number" value="{{product|cart_quantity:request.session.cart}}">
+
+                    <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer">
+                        <span class="m-auto text-2xl font-thin">+</span>
+                      </button>
+                </div>
+                <!-- <div class="custom-number-input h-10 w-32">
+                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                      
+                      <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="{{product|cart_quantity:request.session.cart}}"></input>
+                    
+                  </div> -->
+                  
+                  
+                <span class="text-center w-1/5 font-semibold text-sm">{{product.price|currency}}</span>
+                <span class="text-center w-1/5 font-semibold text-sm">{{product|price_total:request.session.cart|currency}}</span>
+            </div>
+            {% endfor %}
+            <a href="/" class="flex font-semibold text-indigo-600 text-sm mt-10">
+
+                <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
+                    <path
+                        d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                </svg>
+                Continue Shopping
+            </a>
+        </div>
+
+        <div id="summary" class="w-1/4 px-8 py-10">
+            <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+            <div class="flex justify-between mt-10 mb-5">
+                <span class="font-semibold text-sm uppercase">Items 3</span>
+                <span class="font-semibold text-sm">12</span>
+            </div>
+            <div class="flex justify-between mt-10 mb-5">
+                <span class="font-semibold text-sm uppercase">Discount</span>
+                <span class="font-semibold text-sm">0</span>
+            </div>
+            <div class="flex justify-between mt-10 mb-5">
+                <span class="font-semibold text-sm uppercase">Delivery Charges</span>
+                <span class="font-semibold text-sm">FREE</span>
+            </div>
+            <!-- <div>
+                <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
+                <select class="block p-2 text-gray-600 w-full text-sm">
+                    <option>Standard shipping - $10.00</option>
+                </select>
+            </div> -->
+            <!-- <div class="py-10">
+                <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
+                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full">
+            </div>
+            <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button> -->
+            <div class="border-t mt-8">
+                <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                    <span>Total cost</span>
+                    <span>12</span>
+                </div>
+                <a href="{% url 'checkOut' %}">
+                    <button
+                    class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock body %}
+{% block js %}
+<script>
+    function decrement(e) {
+      const btn = e.target.parentNode.parentElement.querySelector(
+        'button[data-action="decrement"]'
+      );
+      const target = btn.nextElementSibling;
+      let value = Number(target.value);
+      value--;
+      target.value = value;
+    }
+  
+    function increment(e) {
+      const btn = e.target.parentNode.parentElement.querySelector(
+        'button[data-action="decrement"]'
+      );
+      const target = btn.nextElementSibling;
+      let value = Number(target.value);
+      value++;
+      target.value = value;
+    }
+  
+    const decrementButtons = document.querySelectorAll(
+      `button[data-action="decrement"]`
+    );
+  
+    const incrementButtons = document.querySelectorAll(
+      `button[data-action="increment"]`
+    );
+  
+    decrementButtons.forEach(btn => {
+      btn.addEventListener("click", decrement);
+    });
+  
+    incrementButtons.forEach(btn => {
+      btn.addEventListener("click", increment);
+    });
+  </script>
+{% endblock js %}

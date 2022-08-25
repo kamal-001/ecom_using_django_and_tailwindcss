@@ -1,0 +1,162 @@
+{% extends 'basic.html' %}
+{% block title %}Contact{% endblock title %}
+{% block body %}
+<div>
+
+
+    <div class=" mt-6 lg:mt-0 rounded shadow bg-grey">
+        
+    </div>
+    <!-- component -->
+    <div>
+        <div
+            class="max-w-screen-xl mt-16 px-4 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-8 lg:px-12 xl:px-26 py-16 mx-auto  text-gray-900 rounded-lg shadow-lg">
+            <div class="flex flex-col ">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 dark:text-white">Get in touch</h2>
+        <p class="mt-3 text-center text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        
+        <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 md:grid-cols-3">
+            <a href="#" class="flex flex-col items-center px-4 py-3 text-gray-700 transition-colors duration-200 transform rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+
+                <span class="mt-2">69 Street</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center px-4 py-3 text-gray-700 transition-colors duration-200 transform rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+
+                <span class="mt-2">+919999999999</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center px-4 py-3 text-gray-700 transition-colors duration-200 transform rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+
+                <span class="mt-2">support@dikart.com</span>
+            </a>
+        </div>
+        
+            </div>
+            <div>
+                <form class="w-full max-w-lg p-3" action="/contact/" method="post">
+                    {% csrf_token %}
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-first-name">
+                                Full Name
+                            </label>
+                            <input minlength="3"
+                                class=" appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey-500"
+                                id="name" name="name" required type="text">
+                            <!-- {% comment %} <p class=" text-xs italic">Please fill out this field.</p> {% endcomment %} -->
+                        </div>
+                        
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-password">
+                                E-mail
+                            </label>
+                            <input 
+                                class=" appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="email" name="email" required type="email">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-password">
+                                Phone
+                            </label>
+                            <input 
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="phone" name="phone" required type="phone">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-password">
+                                Message
+                            </label>
+                            <textarea minlength="3"
+                                class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-40 resize-none"
+                                name="content" required id="content"></textarea>
+                        </div>
+                    </div>
+                    <div class=" mb-6">
+                        <div class="md:flex md:items-center">
+                            <div class="md:w-1/3">
+                                <button
+                                    class="shadow bg-sky-400 hover:bg-sky-400 focus:shadow-outline focus:outline-none text-gray-600 font-bold py-2 px-4 rounded"
+                                    type="submit" onclick="openMessage('messModal')">
+                                    Send
+                                </button>
+                            </div>
+                            <div class="md:w-2/3"></div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    {% for message in messages %}
+    <div class="fixed inset-0 w-full h-full z-20 bg-black bg-opacity-50 duration-300 overflow-y-auto" id="messModal"
+        x-transition:enter="transition duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="relative sm:w-3/4 md:w-1/2 lg:w-1/3 mx-2 sm:mx-auto my-10 opacity-100">
+            <div class="relative bg-white shadow-lg rounded-lg text-gray-900 z-20"
+                x-transition:enter="transition transform duration-300" x-transition:enter-start="scale-0"
+                x-transition:enter-end="scale-100" x-transition:leave="transition transform duration-300"
+                x-transition:leave-start="scale-100" x-transition:leave-end="scale-0">
+                <header class="flex flex-col justify-center items-center p-3 text-green-600">
+                    <div class="flex justify-center w-28 h-28 border-4 border-green-600 rounded-full mb-4">
+                        <svg class="fill-current w-20" viewBox="0 0 20 20">
+                            <path
+                                d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h2 class="font-semibold text-2xl">{{ message.tags }}</h2>
+                </header>
+                <main class="p-3 text-center">
+                    <p>
+                        {{ message }}
+                    </p>
+                </main>
+                <footer class="flex justify-center bg-transparent">
+                    <button
+                        class="bg-green-600 font-semibold text-white py-3 w-full rounded-b-md hover:bg-green-700 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300"
+                        onclick="closeMessage('messModal')">
+                        Confirm
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- /modal -->
+</div>
+{% endblock body %}
+{% block js %}
+<script type="text/javascript">
+    function openMessage(modalId) {
+        messModal = document.getElementById(modalId)
+        messModal.classList.remove('hidden')
+    }
+
+    function closeMessage() {
+        messModal = document.getElementById('messModal')
+        messModal.classList.add('hidden')
+    }
+</script>
+{% endblock js %}
